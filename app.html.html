@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClearMind — Decision Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container header">
+    <div class="brand">
+      <div class="logo">CM</div>
+      <div>
+        <h1 class="brand-title">ClearMind</h1>
+        <p class="brand-subtitle">Decision Tool</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="btn ghost" href="index.html">Home</a>
+      <button class="btn ghost" id="newDecisionBtn" type="button">New</button>
+    </nav>
+  </header>
+
+  <main class="container grid">
+    <!-- FORM -->
+    <section class="panel">
+      <h2 class="panel-title">Make a decision</h2>
+      <p class="muted">Answer 5 questions. ClearMind will generate your next step.</p>
+      <button class="btn ghost" id="demoBtn" type="button">Load demo decision</button>
+
+      <form id="decisionForm" class="form">
+
+        <!-- TEMPLATE PICKER -->
+        <label>
+          <span>Template</span>
+          <select id="templateSelect">
+            <option value="">Choose a template…</option>
+            <option value="job">Job / Career Decision</option>
+            <option value="money">Money Decision</option>
+            <option value="relationship">Relationship Decision</option>
+            <option value="habit">Habit / Self-Discipline Decision</option>
+            <option value="move">Move / Life Change Decision</option>
+          </select>
+          <small class="muted">Templates pre-fill the prompts so you can start fast.</small><br />
+          <small class="muted">Tip: Overwrite the prompts with your real situation.</small>
+        </label>
+
+        <label>
+          <span>1) What decision are you facing?</span>
+          <textarea id="qDecision" required placeholder="Type your decision in 1 sentence…"></textarea>
+        </label>
+
+        <div class="row">
+          <label>
+            <span>2) Option A</span>
+            <input id="qA" required placeholder="Option A (short)..." />
+          </label>
+          <label>
+            <span>Option B</span>
+            <input id="qB" required placeholder="Option B (short)..." />
+          </label>
+        </div>
+
+        <label>
+          <span>3) What matters most? (pick up to 3)</span>
+          <div class="chips" id="valuesChips"></div>
+          <small class="muted">Tip: pick the top 2–3. Less is clearer.</small>
+        </label>
+
+        <div class="row">
+          <label>
+            <span>4) Biggest risk of Option A</span>
+            <textarea id="qRiskA" required placeholder="Biggest risk of A (worst-case)…"></textarea>
+          </label>
+          <label>
+            <span>Biggest risk of Option B</span>
+            <textarea id="qRiskB" required placeholder="Biggest risk of B (worst-case)…"></textarea>
+          </label>
+        </div>
+
+        <label>
+          <span>5) If you had to decide in 24 hours, what would you choose? Why?</span>
+          <textarea id="q24" required placeholder="If forced to choose today: A or B — and why?"></textarea>
+        </label>
+
+        <div class="row">
+          <button class="btn primary" type="submit">Generate clarity</button>
+          <button class="btn ghost" id="clearBtn" type="button">Clear form</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- OUTPUT + HISTORY -->
+    <aside class="panel">
+      <h2 class="panel-title">Your clarity</h2>
+
+      <div id="output" class="output muted">
+        Fill out the questions and click <b>Generate clarity</b>.
+      </div>
+
+      <div id="shareBox" class="share hidden">
+        <h3 class="share-title">Share your clarity</h3>
+        <p class="muted" id="shareMsg">
+          Want a second opinion or accountability? Send this to someone you trust.
+          Ask them: “Which option fits my values best, and what’s the smallest next step?”
+        </p>
+
+        <div class="share-actions">
+          <button class="btn primary" id="copySummaryBtn" type="button">Copy summary</button>
+          <button class="btn ghost" id="copyWithQuestionBtn" type="button">Copy + question</button>
+          <button class="btn ghost" id="downloadBtn" type="button">Download .txt</button>
+        </div>
+
+        <a class="btn ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSfL7O5TsuONnCC0YcJ2sknFUBMJpi7Wq4kaKYquM_YZJr6l0Q/viewform" target="_blank" rel="noopener">Send feedback</a>
+
+        <p class="muted tiny" id="shareStatus"></p>
+
+      <div class="divider"></div>
+
+      <div class="history-header">
+        <h3>Saved decisions</h3>
+        <button class="btn ghost small" id="wipeHistoryBtn" type="button">Wipe</button>
+      </div>
+
+      <ul id="historyList" class="history"></ul>
+      <p class="muted tiny">Saves on this device (localStorage). Login will come later.</p>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
